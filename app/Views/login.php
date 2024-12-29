@@ -58,7 +58,7 @@
 
                                     </div>
                                     <div class="position-relative">
-                                        <input required type="password" class="form-control" id="enkripsi">
+                                        <input required type="password" class="form-control" id="kode_enkripsi">
                                         <div class="form-control-icon">
                                             <i data-feather="lock"></i>
                                         </div>
@@ -91,6 +91,7 @@
             $.post("<?php echo base_url(); ?>/login", {
                         username: $("#username").val(),
                         password: $("#password").val(),
+                        kode_enkripsi: $("#kode_enkripsi").val(),
 
                     },
                     function(data, status) {

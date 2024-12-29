@@ -22,6 +22,7 @@ class Login extends BaseController
         $varsLib = new Vars();
         $username = $this->request->getVar('username');
         $password = $this->request->getVar('password');
+        $kode_enkripsi = $this->request->getVar('kode_enkripsi');
 
         $user = $userModel->where('Username', $username)->first();
 
@@ -50,6 +51,7 @@ class Login extends BaseController
 
         $session = session();
 
+        $user['Kode_enkripsi']=$kode_enkripsi;
         $session->set($user);
 
         // semua data $_POST akan dimasukan kedalam token
