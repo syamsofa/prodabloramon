@@ -1,7 +1,13 @@
+<?php
+$session = session(); ?>
+
 <div class="row" id="basic-table">
   <div class="col-12 col-md-12">
     <div class="card">
       <div class="card-header">
+        <h4>
+          Jika data relawan tidak muncul, kemungkinan karena Anda salah memasukkan kode enkripsi
+        </h4>
         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#primary">
           Tambah
         </button>
@@ -52,7 +58,7 @@
               <div class="col-md-8">
                 <div class="form-group has-icon-left">
                   <div class="position-relative">
-                    <input required type="text" class="form-control" placeholder="Username" id="username">
+                    <input required type="text" class="form-control" placeholder="nama" id="nama">
                     <div class="form-control-icon">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -69,7 +75,7 @@
               <div class="col-md-8">
                 <div class="form-group has-icon-left">
                   <div class="position-relative">
-                    <select required class="form-control" id="JenisKelamin">
+                    <select required class="form-control" id="jeniskelamin">
                       <option value=''>Pilih</option>
 
                       <option value='laki-laki'>Laki2</option>
@@ -96,7 +102,7 @@
                       <option value='L0'>0</option>
                       <option value="L1">1</option>
                       <option value='L2'>2</option>
-                      <option value="L3">3</option>    
+                      <option value="L3">3</option>
                       <option value='L4'>4</option>
                       <option value="L5">5</option>
                     </select>
@@ -126,7 +132,8 @@
 
 <script>
   function tampilRelawan() {
-    $.post("<?php echo base_url(); ?>/relawan", {
+    $.post("<?php echo base_url(); ?>/api/relawan", {
+          kodeenkripsi: '<?php echo $session->get('Kode_enkripsi'); ?>'
 
         },
         function(data, status) {
@@ -159,29 +166,33 @@
 
 
 <script>
-    $("#formTambahRelawan").submit(function() {
-        event.preventDefault();
+  $("#formTambahRelawan").submit(function() {
+    event.preventDefault();
 
-        $.post("<?php echo base_url(); ?>/relawan/tambah", {
-                    nama: $("#username").val(),
-                    jeniskelamin: $("#password").val(),
-                    level: $("#confirm_password").val(),
+    $.post("<?php echo base_url(); ?>/relawan/tambah", {
+          nama: $("#nama").val(),
+          jeniskelamin: $("#jeniskelamin").val(),
+          level: $("#level").val(),
+          kodeenkripsi: '<?php echo $session->get('Kode_enkripsi'); ?>',
 
-                },
-                function(data, status) {
-                    console.log(data)
-                   
-                })
-            .done(function() {
-                alert("success");
-                tampilUser()
-            })
-            .fail(function(data, messages) {
-                alert("Buatkan Username di atas 4 karakter, password di atas 8 karakter");
-                
-            })
-            .always(function() {
-                // alert("finished");
-            });
-    });
+        },
+        function(data, status) {
+          console.log(data)
+
+        })
+      .done(function() {
+        alert("success");
+        // $('#modal').modal('toggle');
+
+        $('#formTambahRelawan')[0].reset();
+        tampilRelawan()
+      })
+      .fail(function(data, messages) {
+        alert("Buatkan Username di atas 4 karakter, password di atas 8 karakter");
+
+      })
+      .always(function() {
+        // alert("finished");
+      });
+  });
 </script>

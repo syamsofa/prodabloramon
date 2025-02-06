@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in - Proda Blora</title>
+    <title>STP2025</title>
     <link rel="stylesheet" href="dist/assets/css/bootstrap.css">
 
     <link rel="shortcut icon" href="dist/assets/images/favicon.svg" type="image/x-icon">
@@ -26,8 +26,7 @@
                     <div class="card pt-4">
                         <div class="card-body">
                             <div class="text-center mb-5">
-                                <img src="dist/assets/images/favicon.svg" height="48" class='mb-4'>
-                                <h3>Sign In</h3>
+                                <h3>Monev STP2025</h3>
                                 <p>Please sign in to continue</p>
                             </div>
                             <form id="form_login" name="form_login" action="">
@@ -52,19 +51,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group position-relative has-icon-left">
-                                    <div class="clearfix">
-                                        <label for="enkripsi">Kode Enkripsi</label>
-
-                                    </div>
-                                    <div class="position-relative">
-                                        <input required type="password" class="form-control" id="kode_enkripsi">
-                                        <div class="form-control-icon">
-                                            <i data-feather="lock"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                
 
                                 <div class="clearfix">
                                     <button class="btn btn-primary float-end">Submit</button>
@@ -90,9 +77,7 @@
 
             $.post("<?php echo base_url(); ?>/login", {
                         username: $("#username").val(),
-                        password: $("#password").val(),
-                        kode_enkripsi: $("#kode_enkripsi").val(),
-
+                        password: $("#password").val()
                     },
                     function(data, status) {
                         console.log(data)
@@ -104,7 +89,7 @@
                     // alert("second success");
                 })
                 .fail(function() {
-                    // alert("error");
+                    alert("Username atau Password mungkin salah yaaa");
                 })
                 .always(function() {
                     // alert("finished");

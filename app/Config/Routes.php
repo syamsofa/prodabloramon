@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -33,15 +33,34 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/token', 'Home::token');
-$routes->post('register', 'Register::index');
+// $routes->post('register', 'Register::index');
 $routes->get('me', 'Me::index');
 $routes->post('login', 'Login::index');
 $routes->get('login', 'Home::login');
 $routes->get('logout', 'Home::logout');
 $routes->get('dashboard', 'Home::dashboard');
+$routes->get('lihat', 'Home::lihat');
+$routes->get('unduh', 'Home::unduh');
 $routes->get('relawan', 'Home::relawan');
+$routes->post('relawan/tambah', 'Relawan::tambah');
 $routes->get('user', 'Home::user');
 $routes->get('main', 'Home::main');
+
+$routes->group("api",function($routes){
+    $routes->post('register', 'Register::index');
+    $routes->post('login', 'Login::index');
+    $routes->post('relawan', 'Relawan::index',['filter' => 'authFilter']);
+    $routes->post('users', 'Users::index',['filter' => 'authFilter']);
+    $routes->post('kab', 'Kab::index',['filter' => 'authFilter']);
+    $routes->post('talent', 'Talent::index',['filter' => 'authFilter']);
+    $routes->post('talent/byproda', 'Talent::byproda',['filter' => 'authFilter']);
+    $routes->post('talent/byproda_hide', 'Talent::byproda_hide',['filter' => 'authFilter']);
+    $routes->post('talent/ubahinisial', 'Talent::ubahinisial',['filter' => 'authFilter']);
+    $routes->post('talent/restore', 'Talent::restore',['filter' => 'authFilter']);
+    $routes->post('talent/update', 'Talent::update',['filter' => 'authFilter']);
+
+
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing

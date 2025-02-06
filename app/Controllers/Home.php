@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Helpers\JwtHelper;
 use App\Libraries\Vars;
+use App\Models\KabModel;
 use Firebase\JWT\JWT;
 
 use CodeIgniter\API\ResponseTrait;
@@ -21,7 +22,7 @@ class Home extends BaseController
             header("Location: " . base_url() . "/login");
             die();
         } else {
-            header("Location: " . base_url() . "/main");
+            header("Location: " . base_url() . "/dashboard");
             die();
         }
     }
@@ -50,7 +51,7 @@ class Home extends BaseController
     {
         $session = session();
         if ($session->get('Username')) {
-            header("Location: " . base_url() . "/main");
+            header("Location: " . base_url() . "/dashboard");
             die();
         }
         return view('login');
@@ -77,6 +78,22 @@ class Home extends BaseController
     {
         $this->arr['judul'] = "RELAWAN";
         $this->arr['caption'] = "Mengelola Data Relawan";
+        return view('main', $this->arr);
+    }
+    public function lihat()
+    {
+        $kabMo=new KabModel();
+        $listKab = $kabMo->orderBy('Kab', 'ASC')->findAll();
+
+        $this->arr['judul'] = "LIHAT DATA";
+        $this->arr['caption'] = "Lihat Data Masuk";
+        $this->arr['kab'] = $listKab;
+        return view('main', $this->arr);
+    }
+    public function unduh()
+    {
+        $this->arr['judul'] = "UNDUH DATA";
+        $this->arr['caption'] = "Unduh Data";
         return view('main', $this->arr);
     }
     public function user()

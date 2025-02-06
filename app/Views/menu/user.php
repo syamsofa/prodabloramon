@@ -1,3 +1,9 @@
+<?php
+
+$session = session();
+
+?>
+
 <div class="row" id="basic-table">
     <div class="col-12 col-md-12">
         <div class="card">
@@ -108,29 +114,22 @@
 
 <script>
     function tampilUser() {
-        $.post("<?php echo base_url(); ?>/users", {
+        $.ajax({
+            url: "<?php echo base_url(); ?>/api/users",
+            type: 'POST',
+            // Fetch the stored token from localStorage and set in the header
+            headers: {
+                "Authorization": "Bearer " + "<?php echo $session->get('Token'); ?>"
+            },
+            success: function(data) {
+                console.log("Success!");
+                $("#userlist").empty()
+                data.forEach(e1 => {
+                    $("#userlist").append("<tr><td>" + e1.Username + "</td><td>" + e1.IsAdmin + "</td></tr>")
 
-                },
-                function(data, status) {
-                    console.log(data)
-                    $("#userlist").empty()
-                    data.forEach(e1 => {
-                        $("#userlist").append("<tr><td>" + e1.Username + "</td><td>" + e1.IsAdmin + "</td></tr>")
-
-                    });
-                    // if (data.status == true)
-                    // location.reload();
-                    // alert("success");
-                })
-            .done(function() {
-                // alert("second success");
-            })
-            .fail(function() {
-                // alert("error");
-            })
-            .always(function() {
-                // alert("finished");
-            });
+                });
+            }
+        });
 
     }
 </script>
@@ -150,7 +149,7 @@
                 },
                 function(data, status) {
                     console.log(data)
-                   
+
                 })
             .done(function() {
                 alert("success");
@@ -158,7 +157,7 @@
             })
             .fail(function(data, messages) {
                 alert("Buatkan Username di atas 4 karakter, password di atas 8 karakter");
-                
+
             })
             .always(function() {
                 // alert("finished");

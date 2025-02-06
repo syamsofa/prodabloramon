@@ -49,10 +49,10 @@ class Login extends BaseController
             "status" => false
         );
 
-        $session = session();
+       
 
-        $user['Kode_enkripsi']=$kode_enkripsi;
-        $session->set($user);
+      
+        // $session->set($user);
 
         // semua data $_POST akan dimasukan kedalam token
         $token = $jwt->BuatToken($_POST); // proses membuat token
@@ -60,6 +60,12 @@ class Login extends BaseController
         $response["message"] = "Ok";
         $response["token"] = $token;
         $response["status"] = true;
+       
+
+        $user['Kode_enkripsi']=$kode_enkripsi;
+        $user['Token']=$token;
+        $session = session();
+        $session->set($user);
 
         return $this->respond($response);
     }

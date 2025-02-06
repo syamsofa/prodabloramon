@@ -14,8 +14,8 @@ class Register extends BaseController
     public function index()
     {
         $rules = [
-            'username' => ['rules' => 'required|min_length[4]|max_length[255]'],
-            'password' => ['rules' => 'required|min_length[8]|max_length[255]'],
+            'username' => ['rules' => 'required|min_length[3]|max_length[255]'],
+            'password' => ['rules' => 'required|min_length[3]|max_length[255]'],
             'confirm_password'  => [ 'label' => 'confirm password', 'rules' => 'matches[password]']
         ];
             

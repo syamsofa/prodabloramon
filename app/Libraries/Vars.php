@@ -6,53 +6,32 @@ use Stringable;
 
 class Vars
 {
-    const SEC_KEY='d7f87df8u45igu8dyuiy485rgfuihd';
- 
-    public function enkripsi($string)
+    const SEC_KEY = 'd7f87df8u45igu8dyuiy485rgfuihd';
+    const IV = '1234567812345678';
+    const CIP = "AES-128-CTR";
+    const OPTIONS = 0;
+    public function enkripsi($string, $encryption_key)
     {
-        $simple_string = $string;
 
-
-        // Store the cipher method
-        $ciphering = "AES-128-CTR";
-
-        // Use OpenSSl Encryption method
-        // $iv_length = openssl_cipher_iv_length($ciphering);
-        $options = 0;
-
-        // Non-NULL Initialization Vector for encryption
-        $encryption_iv = '1234567891011121';
-
-        // Store the encryption key
-        $encryption_key = "prodablora@bangkit";
-
-        // Use openssl_encrypt() function to encrypt the data
         $encryption = openssl_encrypt(
-            $simple_string,
-            $ciphering,
+            $string,
+            $this::CIP,
             $encryption_key,
-            $options,
-            $encryption_iv
+            $this::OPTIONS,
+            $this::IV
         );
 
         // Display the encrypted string
         return $encryption;
     }
-    public function dekripsi($string)
+    public function dekripsi($string,$encryption_key)
     {
-        $decryption_iv = '1234567891011121';
-        $ciphering = "AES-128-CTR";
-        // Store the decryption key
-        $decryption_key = "prodablora@bangkit";
-        $options = 0;
-
-        // Use openssl_decrypt() function to decrypt the data
         $decryption = openssl_decrypt(
             $string,
-            $ciphering,
-            $decryption_key,
-            $options,
-            $decryption_iv
+            $this::CIP,
+            $encryption_key,
+            $this::OPTIONS,
+            $this::IV
         );
 
         // Display the decrypted string
