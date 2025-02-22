@@ -129,7 +129,7 @@ $session = session();
                     <div class="table-responsive">
                         <table class='table mb-0' id="table1">
                             <thead>
-                                <tr class="text-center">
+                                <tr class="text-center" >
                                     <th rowspan=2>Proda</th>
 
                                     <th colspan=2>L3</th>

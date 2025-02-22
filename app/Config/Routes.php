@@ -58,6 +58,8 @@ $routes->group("api",function($routes){
     $routes->post('talent/ubahinisial', 'Talent::ubahinisial',['filter' => 'authFilter']);
     $routes->post('talent/restore', 'Talent::restore',['filter' => 'authFilter']);
     $routes->post('talent/update', 'Talent::update',['filter' => 'authFilter']);
+    $routes->get('talent/prosesinisial', 'Talent::prosesinisial');
+    $routes->get('talent/dekinisial', 'Talent::dekinisial');
 
 
 });

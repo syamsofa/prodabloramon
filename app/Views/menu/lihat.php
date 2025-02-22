@@ -39,23 +39,26 @@ $session = session();
                         <div class="row">
 
 
-                            <h4>Data Realisasi</h4>
+                            <h4>Data Talent <div style="color:red">Jika data tidak muncul, karena Anda salah memasukkan KODE ENKRIPSI! Logout dan login dengan benar</div>
+                            </h4>
+                            <fieldset class="form-group">
+                                FILTER: <input type="text" id="myInput" class="form-input" style="background-color:yellow" onkeyup="myFunction()" placeholder="Cari inisial talent.." title="Type in a name">
+                            </fieldset>
                             <div class="col-md-12 mb-4">
                                 <div class="table-responsive">
                                     <table id="datatabel" class="table table-striped w-auto">
                                         <thead class="bg-primary text-white">
                                             <tr class="text-center">
+                                                <th>No</th>
                                                 <th>SubmitTime</th>
                                                 <th>Inisial Awal</th>
                                                 <th>Inisial Revisi</th>
+                                                <th>Nama Ter-DeCript</th>
                                                 <th>Aksi</th>
-
                                                 <th>Kab Domisili</th>
                                                 <th>Jenis Kelamin</th>
                                                 <th>Umur</th>
-
                                             </tr>
-
                                         </thead>
                                         <tbody id="list_data">
 
@@ -158,7 +161,8 @@ $session = session();
                 "Authorization": "Bearer " + "<?php echo $session->get('Token'); ?>"
             },
             data: {
-                kodekab: kodekab
+                kodekab: kodekab,
+                search: $("#myInput").val()
             },
             success: function(data) {
                 // if (DataTable.isDataTable('#datatabel'))
@@ -166,14 +170,19 @@ $session = session();
 
                 // console.log(data)
                 // console.log(data)
+                // $("#myInput").val('')
+
                 $("#list_data").empty()
                 // 751898X9X6
+                let nom = 1
                 data.forEach(e1 => {
-                    $("#list_data").append("<tr class='text-center'><td>" + e1['submitdate'] + "</td><td>" + e1['751898X1X1'].toUpperCase() + "</td><td><b>" + e1['inisial_revisi'].toUpperCase() + " </b></td><td><button class='btn btn-success btn-sm' data-bs-toggle='modal' data-inisialawal='" + e1['751898X1X1'] + "' data-idtalent='" + e1['id'] + "' data-bs-target='#inlineForm'>Ubah Inisial</button><button onclick='hapusData(" + e1['id'] + ")' class='btn btn-danger btn-sm'>Hapus</button></td><td>" + e1['kab_domisili'] + "</td><td>" + e1['751898X1X53'] + "</td><td>" + e1['umur'] + "</td></tr>")
+                    $("#list_data").append("<tr class='text-center'><td>" + nom + "</td><td>" + e1['submitdate'] + "</td><td>" + e1['751898X1X1'].toUpperCase() + "</td><td><b>" + e1['inisial_revisi'].toUpperCase() + " </b></td><td><b>" + e1['NamaAsli'] + " </b></td><td><button class='btn btn-success btn-sm' data-bs-toggle='modal' data-inisialawal='" + e1['751898X1X1'] + "' data-idtalent='" + e1['id'] + "' data-bs-target='#inlineForm'>Ubah Inisial</button><button onclick='hapusData(" + e1['id'] + ")' class='btn btn-danger btn-sm'>Hapus</button></td><td>" + e1['kab_domisili'] + "</td><td>" + e1['751898X1X53'] + "</td><td>" + e1['umur'] + "</td></tr>")
+                    nom++
                 });
 
 
                 // l = new DataTable('#datatabel')
+
 
 
                 // 
@@ -317,6 +326,7 @@ $session = session();
         }
         // alert(text + ' ' + id)
     }
+
     function restoreData(id) {
         let text = "Yakin restore?";
         if (confirm(text) == true) {
@@ -348,5 +358,10 @@ $session = session();
         }
         // alert(text + ' ' + id)
     }
+</script>
 
+<script>
+    $("#myInput").change(function() {
+        tampil($("#kodekab").val())
+    });
 </script>

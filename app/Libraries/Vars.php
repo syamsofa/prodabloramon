@@ -24,16 +24,24 @@ class Vars
         // Display the encrypted string
         return $encryption;
     }
-    public function dekripsi($string,$encryption_key)
+    public function dekripsi($string, $encryption_key)
     {
-        $decryption = openssl_decrypt(
-            $string,
-            $this::CIP,
-            $encryption_key,
-            $this::OPTIONS,
-            $this::IV
-        );
 
+        try {
+            $decryption = openssl_decrypt(
+                $string,
+                $this::CIP,
+                $encryption_key,
+                $this::OPTIONS,
+                $this::IV
+            );
+        }
+
+        //catch exception
+        catch (\Exception $e) {
+            $decryption = 'Gagal Meng-Decrypt Nama';
+            // echo 'Message: ' .$e->getMessage();
+        }
         // Display the decrypted string
         return $decryption;
     }

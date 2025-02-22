@@ -51,7 +51,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="form-group position-relative has-icon-left">
+                                    <div class="clearfix">
+                                        <label for="password">Kode Enkripsi (yang biasa dipakai untuk membuka NL),<div style="color:red">Jangan sampai salah, karena akan membuat data gagal DIBACA</div></label>
+
+                                    </div>
+                                    <div class="position-relative">
+                                        <input required type="text" class="form-control" id="kode_enkripsi">
+                                        <div class="form-control-icon">
+                                            <i data-feather="lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="clearfix">
                                     <button class="btn btn-primary float-end">Submit</button>
@@ -77,7 +88,8 @@
 
             $.post("<?php echo base_url(); ?>/login", {
                         username: $("#username").val(),
-                        password: $("#password").val()
+                        password: $("#password").val(),
+                        kode_enkripsi: $("#kode_enkripsi").val()
                     },
                     function(data, status) {
                         console.log(data)
