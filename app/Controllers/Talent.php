@@ -130,7 +130,7 @@ ORDER BY lsb8_survey_751898.751898X1X38,lsb8_survey_751898.751898X1X3";
         $varEn = new Vars();
         $search = $this->request->getVar('search');
         $db      = \Config\Database::connect();
-        $sql = "SELECT submitdate,lsb8_survey_751898.id,IFNULL(lsb8_survey_751898.751898X9X36,IFNULL(instansipusat.answer,'-')) AS tempatbekerja, kab.Kab AS kab_domisili, IFNULL( inisial.inisial,lsb8_survey_751898.751898X1X1) AS inisial_revisi,inisial_enkripsi.NamaTerenkripsi, IFNULL( inisial.time,'-') AS waktu_perubahan, lsb8_survey_751898.751898X1X1,751898X9X6,751898X1X53, YEAR(CURRENT_DATE())-lsb8_survey_751898.751898X1X506 AS umur from lsb8_survey_751898 
+        $sql = "SELECT IF(inisial_enkripsi.Inisial IS null,'tidaksesuai','sesuai') AS status_inisial,  submitdate,lsb8_survey_751898.id,IFNULL(lsb8_survey_751898.751898X9X36,IFNULL(instansipusat.answer,'-')) AS tempatbekerja, kab.Kab AS kab_domisili, IFNULL( inisial.inisial,lsb8_survey_751898.751898X1X1) AS inisial_revisi,inisial_enkripsi.NamaTerenkripsi, IFNULL( inisial.time,'-') AS waktu_perubahan, lsb8_survey_751898.751898X1X1,751898X9X6,751898X1X53, YEAR(CURRENT_DATE())-lsb8_survey_751898.751898X1X506 AS umur from lsb8_survey_751898 
 LEFT JOIN kab
 ON kab.Kode=lsb8_survey_751898.751898X1X33
 LEFT JOIN kec

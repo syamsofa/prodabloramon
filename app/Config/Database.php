@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '123456',
-        'database' => 'proda',
+        'database' => 'monevproda',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

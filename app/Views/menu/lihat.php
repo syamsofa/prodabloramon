@@ -39,7 +39,7 @@ $session = session();
                         <div class="row">
 
 
-                            <h4>Data Talent <div style="color:red">Jika data tidak muncul, karena Anda salah memasukkan KODE ENKRIPSI! Logout dan login dengan benar</div>
+                            <h4>Data Talent <div style="color:red">Jika data tidak muncul, karena Anda salah memasukkan KODE ENKRIPSI! Silahkan logout dan login dengan kode enkripsi yang benar</div>
                             </h4>
                             <fieldset class="form-group">
                                 FILTER: <input type="text" id="myInput" class="form-input" style="background-color:yellow" onkeyup="myFunction()" placeholder="Cari inisial talent.." title="Type in a name">
@@ -50,9 +50,9 @@ $session = session();
                                         <thead class="bg-primary text-white">
                                             <tr class="text-center">
                                                 <th>No</th>
-                                                <th>SubmitTime</th>
                                                 <th>Inisial Awal</th>
                                                 <th>Inisial Revisi</th>
+                                                <th>Status Inisial</th>
                                                 <th>Nama Ter-DeCript</th>
                                                 <th>Aksi</th>
                                                 <th>Kab Domisili</th>
@@ -176,7 +176,7 @@ $session = session();
                 // 751898X9X6
                 let nom = 1
                 data.forEach(e1 => {
-                    $("#list_data").append("<tr class='text-center'><td>" + nom + "</td><td>" + e1['submitdate'] + "</td><td>" + e1['751898X1X1'].toUpperCase() + "</td><td><b>" + e1['inisial_revisi'].toUpperCase() + " </b></td><td><b>" + e1['NamaAsli'] + " </b></td><td><button class='btn btn-success btn-sm' data-bs-toggle='modal' data-inisialawal='" + e1['751898X1X1'] + "' data-idtalent='" + e1['id'] + "' data-bs-target='#inlineForm'>Ubah Inisial</button><button onclick='hapusData(" + e1['id'] + ")' class='btn btn-danger btn-sm'>Hapus</button></td><td>" + e1['kab_domisili'] + "</td><td>" + e1['751898X1X53'] + "</td><td>" + e1['umur'] + "</td></tr>")
+                    $("#list_data").append("<tr class='text-center'><td>" + nom + "</td><td>" + e1['751898X1X1'].toUpperCase() + "</td><td><b>" + e1['inisial_revisi'].toUpperCase() + " </b></td><td>" + e1['status_inisial'] + "</td><td><b>" + e1['NamaAsli'] + " </b></td><td><button class='btn btn-success btn-sm' data-bs-toggle='modal' data-inisialawal='" + e1['751898X1X1'] + "' data-idtalent='" + e1['id'] + "' data-bs-target='#inlineForm'>Ubah Inisial</button><button onclick='hapusData(" + e1['id'] + ")' class='btn btn-danger btn-sm'>Hapus</button></td><td>" + e1['kab_domisili'] + "</td><td>" + e1['751898X1X53'] + "</td><td>" + e1['umur'] + "</td></tr>")
                     nom++
                 });
 
