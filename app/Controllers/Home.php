@@ -85,8 +85,18 @@ class Home extends BaseController
         $kabMo=new KabModel();
         $listKab = $kabMo->orderBy('Kab', 'ASC')->findAll();
 
-        $this->arr['judul'] = "LIHAT DATA";
-        $this->arr['caption'] = "Lihat Data Masuk";
+        $this->arr['judul'] = "REKONSILIASI DATA";
+        $this->arr['caption'] = "Rekonsiliasi Data Masuk";
+        $this->arr['kab'] = $listKab;
+        return view('main', $this->arr);
+    }
+    public function masterinisial()
+    {
+        $kabMo=new KabModel();
+        $listKab = $kabMo->orderBy('Kab', 'ASC')->findAll();
+
+        $this->arr['judul'] = "MASTER INISIAL";
+        $this->arr['caption'] = "MASTER INISIAL";
         $this->arr['kab'] = $listKab;
         return view('main', $this->arr);
     }

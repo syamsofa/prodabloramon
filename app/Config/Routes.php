@@ -40,7 +40,7 @@ $routes->get('login', 'Home::login');
 $routes->get('logout', 'Home::logout');
 $routes->get('dashboard', 'Home::dashboard');
 $routes->get('lihat', 'Home::lihat');
-$routes->get('unduh', 'Home::unduh');
+$routes->get('masterinisial', 'Home::masterinisial');
 $routes->get('relawan', 'Home::relawan');
 $routes->post('relawan/tambah', 'Relawan::tambah');
 $routes->get('user', 'Home::user');
@@ -56,10 +56,20 @@ $routes->group("api",function($routes){
     $routes->post('talent/byproda', 'Talent::byproda',['filter' => 'authFilter']);
     $routes->post('talent/byproda_hide', 'Talent::byproda_hide',['filter' => 'authFilter']);
     $routes->post('talent/ubahinisial', 'Talent::ubahinisial',['filter' => 'authFilter']);
+    $routes->post('talent/ubahwilpembinaan', 'Talent::ubahwilpembinaan',['filter' => 'authFilter']);
     $routes->post('talent/restore', 'Talent::restore',['filter' => 'authFilter']);
     $routes->post('talent/update', 'Talent::update',['filter' => 'authFilter']);
     $routes->get('talent/prosesinisial', 'Talent::prosesinisial');
     $routes->get('talent/dekinisial', 'Talent::dekinisial');
+
+    $routes->post('talent/inisialbyproda', 'Talent::inisialbyproda',['filter' => 'authFilter']);
+    $routes->post('talent/individu', 'Talent::individu',['filter' => 'authFilter']);
+    $routes->post('talent/ubahkerja', 'Talent::ubahkerja',['filter' => 'authFilter']);
+    $routes->post('talent/masterinisial', 'Talent::masterinisial',['filter' => 'authFilter']);
+    $routes->post('talent/tambahinisial', 'Talent::tambahinisial',['filter' => 'authFilter']);
+    
+    
+    
 
 
 });

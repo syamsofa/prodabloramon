@@ -5,6 +5,7 @@ if (!$session->get('Username')) {
     die();
 }
 
+
 ?>
 
 <!DOCTYPE html>
@@ -65,16 +66,16 @@ if (!$session->get('Username')) {
 
                             <a href="lihat" class='sidebar-link'>
                                 <i data-feather="layout" width="20"></i>
-                                <span>Lihat Data</span>
+                                <span>Rekonsiliasi Data</span>
                             </a>
 
 
                         </li>
                         <li class="sidebar-item  ">
 
-                            <a href="unduh" class='sidebar-link'>
+                            <a href="masterinisial" class='sidebar-link'>
                                 <i data-feather="layout" width="20"></i>
-                                <span>Unduh Data</span>
+                                <span>Master Inisial</span>
                             </a>
 
 
@@ -138,10 +139,10 @@ if (!$session->get('Username')) {
                     echo view('menu/relawan');
                 if ($seg == 'user')
                     echo view('menu/user');
-                if ($seg == 'unduh')
-                    echo view('menu/unduh');
+                if ($seg == 'masterinisial')
+                    echo view('menu/masterinisial');
                 if ($seg == 'lihat')
-                    echo view('menu/lihat');
+                    echo view('menu/lihat',$kab);
                 ?>
             </div>
 

@@ -98,8 +98,10 @@ $arrayInstansi = [
 
 
                         <div class="row">
-                            <h5>Data Talent
+                            <h5><button class='btn btn-success' data-bs-toggle='modal' data-bs-target='#kerjaForm'>Tambah Inisial</button>
+
                             </h5>
+
                             <fieldset class="form-group">
                                 FILTER: <input type="text" id="myInput" class="form-input" style="background-color:yellow" onkeyup="myFunction()" placeholder="Cari inisial talent.." title="Type in a name">
                             </fieldset>
@@ -109,14 +111,9 @@ $arrayInstansi = [
                                         <thead style="position: sticky;top: 0" class="bg-primary text-white">
                                             <tr class="text-center">
                                                 <th>No</th>
-                                                <th>Inisial Awal</th>
-                                                <th>Inisial Revisi</th>
-                                                <th>Status Inisial Revisi</th>
-                                                <th>Kab Domisili</th>
-                                                <th>Status Bekerja</th>
-                                                <th>Prodi - Skill</th>
-
-                                                <th>Aksi</th>
+                                                <th>Inisial</th>
+                                                <th>Nama encripted</th>
+                                                <th>Nama asli</th>
                                             </tr>
                                         </thead>
                                         <tbody id="list_data">
@@ -125,29 +122,7 @@ $arrayInstansi = [
                                     </table>
                                 </div>
                             </div>
-                            <h4>Data duplikat/salah yang dihapus</h4>
-                            <div class="col-md-12 mb-4">
-                                <div class="table-responsive">
-                                    <table id="datatabel" class="table table-striped w-auto">
-                                        <thead class="bg-primary text-white">
-                                            <tr class="text-center">
-                                                <th>SubmitTime</th>
-                                                <th>Inisial Awal</th>
-                                                <th>Inisial Revisi</th>
-                                                <th>Aksi</th>
 
-                                                <th>Kab Domisili</th>
-                                                <th>Jenis Kelamin</th>
-
-                                            </tr>
-
-                                        </thead>
-                                        <tbody id="list_data_hide">
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -206,35 +181,8 @@ $arrayInstansi = [
                     <i data-feather="x"></i>
                 </button>
             </div>
-            <form id="formUbahWilPembinaan">
-                <div class="modal-body">
 
-                    <label>Wilayah Pembinaan Menjadi: </label>
-                    <div class="form-group">
 
-                        <select id='wilpembinaan' class="form-control">
-                            <?php
-                            echo "<option value=''>--Pilih</option>";
-                            foreach ($kab as $listKab) {
-                                echo "<option value=" . $listKab['Kode'] . ">" . $listKab['Kab'] . "</option>";
-                                # code...
-                            }
-                            ?>
-                        </select>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Close</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Simpan</span>
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 </div>
@@ -243,7 +191,7 @@ $arrayInstansi = [
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Ubah Keterangan Pekerjaan</h4>
+                <h4 class="modal-title" id="myModalLabel33">Tambah Inisial Baru</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
@@ -251,111 +199,18 @@ $arrayInstansi = [
             <form id="formUbahWilPembinaan">
                 <div class="modal-body">
 
-                    <label>Apakah Bekerja </label>
+                    <label>Inisial </label>
                     <div class="form-group">
 
-                        <select id='751898X9X6' class="form-control">
-                            <option value=''>--Pilih--</option>
-                            <option value='Ya'>Ya</option>
-                            <option value='Tidak'>Tidak</option>
-                        </select>
+                        <input id='tambahInisial' class="form-control" type='text'>
 
                     </div>
-                    <label>Pekerjaannya </label>
-                    <div class="form-group">
-
-                        <select id='751898X9X11' class="form-control">
-                            <option value=''>--Pilih--</option>
-                            <?php
-
-                            foreach ($arrayPekerjaan as $pek) {
-                                echo " <option value='" . $pek[0] . "'>" . $pek[1] . "</option>";
-                            }
-                            ?>
-                        </select>
-
-                    </div>
-                    <label>Instansi Bekerja </label>
-                    <div class="form-group">
-
-                        <select id='751898X9X12' class="form-control">
-                            <option value=''>--Tidak Relevan--</option>
-                            <?php
-
-                            foreach ($arrayInstansi as $pek) {
-                                echo " <option value='" . $pek[0] . "'>" . $pek[1] . "</option>";
-                            }
-                            ?>
-                        </select>
-
-                    </div>
-                    <label>Pangkat </label>
-                    <div class="form-group">
-
-                        <select id='751898X8X32' class="form-control">
-                            <option value=''>--Tidak Relevan--</option>
-                            <?php
-
-                            foreach ($arrayPangkat as $pek) {
-                                echo " <option value='" . $pek[0] . "'>" . $pek[1] . "</option>";
-                            }
-                            ?>
-                        </select>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Close</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Simpan</span>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<div class="modal fade text-left" id="detailForm" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel33" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel33">Detail Talent</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <i data-feather="x"></i>
-                </button>
-            </div>
-            <form id="formUbahWilPembinaan">
-                <div class="modal-body">
-
                     <label>Nama Lengkap </label>
                     <div class="form-group">
 
-                        <input readonly id='detailNamaLengkap' class="form-control" type='text'>
+                        <input id='tambahNama' class="form-control" type='text'>
 
                     </div>
-                    <label>Tempat Bekerja </label>
-                    <div class="form-group">
-
-                        <input readonly id='detailTempatBekerja' class="form-control" type='text'>
-
-                    </div>
-                    <label>Gender </label>
-                    <div class="form-group">
-
-                        <input readonly id='detailGender' class="form-control" type='text'>
-
-                    </div>
-                    <label>Level </label>
-                    <div class="form-group">
-
-                        <input readonly id='detailLevel' class="form-control" type='text'>
-
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
@@ -371,6 +226,7 @@ $arrayInstansi = [
         </div>
     </div>
 </div>
+
 
 <script>
     // $.ajax({
@@ -392,7 +248,7 @@ $arrayInstansi = [
 <script>
     function tampil(kodekab) {
         $.ajax({
-            url: "<?php echo base_url(); ?>/api/talent/byproda",
+            url: "<?php echo base_url(); ?>/api/talent/masterinisial",
             type: 'POST',
             headers: {
                 "Authorization": "Bearer " + "<?php echo $session->get('Token'); ?>"
@@ -419,8 +275,7 @@ $arrayInstansi = [
                         statusbekerja = 'bg-danger'
                     // statusbekerja
 
-                    $("#list_data").append("<tr class='text-center'><td>" + nom + "</td><td>" + e1['751898X1X1'].toUpperCase() + "</td><td>" + e1['inisial_revisi'].toUpperCase() + "</td><td><span  class='badge " + stat + "'>" + e1['status_inisial'] + "</span></td><td>" + e1['kab_domisili'] + "</td><td><span  class='badge " + statusbekerja + "'>" + e1['statusbekerja'] + "</span></td><td>" + e1['prodi'] + " - " + e1['keahlian'] + "</td>" +
-                        "<td><div class='btn-group' role='group' aria-label='Basic example'><button class='btn btn-dark btn-sm' data-bs-toggle='modal' data-wilayahpembinaanawal='" + e1['wilayahkelas'] + "' data-idtalent='" + e1['id'] + "' data-bs-target='#detailForm'>Detail Talent</button><button class='btn btn-primary btn-sm' data-bs-toggle='modal' data-inisialawal='" + e1['751898X1X1'] + "' data-idtalent='" + e1['id'] + "' data-bs-target='#inlineForm'>Ubah Inisial</button><button class='btn btn-success btn-sm' data-bs-toggle='modal' data-wilayahpembinaanawal='" + e1['wilayahkelas'] + "' data-idtalent='" + e1['id'] + "' data-bs-target='#wilForm'>Ubah Wil</button><button class='btn btn-warning btn-sm' data-bs-toggle='modal' data-wilayahpembinaanawal='" + e1['wilayahkelas'] + "' data-idtalent='" + e1['id'] + "' data-bs-target='#kerjaForm'>Edit Kerja</button><button onclick='hapusData(" + e1['id'] + ")' class='btn btn-danger btn-sm'>Hapus</button></div></td></tr>")
+                    $("#list_data").append("<tr class='text-center'><td>" + nom + "</td><td>" + e1['Inisial'].toUpperCase() + "</td><td>" + e1['NamaTerenkripsi'] + "</td><td>" + e1['NamaAsli'] + "</td></tr>")
                     nom++
                 });
 
@@ -546,37 +401,19 @@ $arrayInstansi = [
         var button = $(event.relatedTarget) // Button that triggered the modal
         idtalent = button.data('idtalent')
 
-        $("#wilpembinaan").val(button.data('wilayahpembinaanawal'))
+        
+        setTimeout(() => {
+            if ($("#kodekab").val() == '') {
+            alert('pilih proda kab/proda terlebih dahulu')
+            $('#kerjaForm').modal('hide');
+        }
+        }, 2000);
 
-
+        // alert(111)
 
         var modal = $(this)
 
 
-        $.ajax({
-            url: "<?php echo base_url(); ?>/api/talent/individu",
-            type: 'POST',
-            headers: {
-                "Authorization": "Bearer " + "<?php echo $session->get('Token'); ?>"
-            },
-            data: {
-                idtalent: idtalent
-            },
-            success: function(data) {
-                // data = data[0]
-                // console.log(data.statusbekerja)
-                // alert(data.statusbekerja)
-                $("#751898X9X6").val(data.statusbekerja)
-                $("#751898X9X11").val(data.pekerjaan)
-
-                $("#751898X9X12").val(data.instansi)
-                $("#751898X8X32").val(data.pangkat)
-
-
-
-
-            }
-        });
     })
 </script>
 <script>
@@ -692,14 +529,15 @@ $arrayInstansi = [
 <script>
     $("#formUbahWilPembinaan").submit(function(event) {
         $.ajax({
-            url: "<?php echo base_url(); ?>/api/talent/ubahwilpembinaan",
+            url: "<?php echo base_url(); ?>/api/talent/tambahinisial",
             type: 'POST',
             headers: {
                 "Authorization": "Bearer " + "<?php echo $session->get('Token'); ?>"
             },
             data: {
-                idtalent: idtalent,
-                wilpembinaan: $("#wilpembinaan").val(),
+                kodekab: $("#kodekab").val(),
+                inisial: $("#tambahInisial").val(),
+                nama: $("#tambahNama").val(),
 
             },
             success: function(data) {
@@ -707,16 +545,8 @@ $arrayInstansi = [
                 alert('Sukses')
 
                 tampil($("#kodekab").val())
-                tampilHide($("#kodekab").val())
-                //     $response = [
-                // 'status'   => 200,
-                // 'error'    => null,
-                // 'messages' => [
-                //     'success' => 'Data inisial berhasil diubah.'
-                // ]
-                // ];
-
-
+             
+              
 
             }
         });
